@@ -39,9 +39,9 @@ export default function PricingCalendar() {
 
     if (isPast || isBlocked) return { style: "cal-disabled cal-past", bg: "#F1F5F9", color: "#CBD5E0", dot: null };
     if (isSelected)          return { style: "cal-day selected ring-2", bg: "#FF5C1A", color: "#fff", dot: null };
-    if (hasSpecial)          return { style: "cal-day", bg: "#FFF7F4", color: "#0B1628", dot: "special" };
-    if (isWeekend)           return { style: "cal-day", bg: "#F8FAFC", color: "#0B1628", dot: "weekend" };
-    return                          { style: "cal-day", bg: "#fff",    color: "#0B1628", dot: null };
+    if (hasSpecial)          return { style: "cal-day", bg: "rgba(247,242,232,.8)", color: "var(--navy)", dot: "special" };
+    if (isWeekend)           return { style: "cal-day", bg: "var(--slate)", color: "var(--navy)", dot: "weekend" };
+    return                          { style: "cal-day", bg: "#fff",    color: "var(--navy)", dot: null };
   }
 
   const fmtPrice = (n: number) => `$${n}`;
@@ -51,18 +51,18 @@ export default function PricingCalendar() {
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
 
       {/* ── CALENDAR ── */}
-      <div className="lg:col-span-3 rounded-2xl overflow-hidden shadow-xl" style={{ border: "1px solid #E2E8F0" }}>
+      <div className="lg:col-span-3 rounded-2xl overflow-hidden shadow-xl" style={{ border: "1px solid var(--border)" }}>
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5" style={{ background: "#0B1628" }}>
-          <button onClick={prev} className="w-9 h-9 rounded-lg flex items-center justify-center text-white transition-all hover:scale-110" style={{ background: "rgba(255,255,255,.1)" }} aria-label="Previous month">‹</button>
+        <div className="flex items-center justify-between px-6 py-5" style={{ background: "var(--navy)" }}>
+          <button onClick={prev} className="w-9 h-9 rounded-lg flex items-center justify-center text-white transition-all hover:scale-110" style={{ background: "rgba(242,223,167,.1)" }} aria-label="Previous month">‹</button>
           <h3 className="font-black text-white text-lg">{MONTHS[month]} {year}</h3>
-          <button onClick={next} className="w-9 h-9 rounded-lg flex items-center justify-center text-white transition-all hover:scale-110" style={{ background: "rgba(255,255,255,.1)" }} aria-label="Next month">›</button>
+          <button onClick={next} className="w-9 h-9 rounded-lg flex items-center justify-center text-white transition-all hover:scale-110" style={{ background: "rgba(242,223,167,.1)" }} aria-label="Next month">›</button>
         </div>
 
         {/* Day headers */}
         <div className="grid grid-cols-7 px-4 pt-4 pb-2">
           {DAYS.map((d) => (
-            <div key={d} className="text-center text-xs font-bold uppercase tracking-wide py-1" style={{ color: "#8896A4" }}>{d}</div>
+            <div key={d} className="text-center text-xs font-bold uppercase tracking-wide py-1" style={{ color: "var(--mid)" }}>{d}</div>
           ))}
         </div>
 
@@ -87,7 +87,7 @@ export default function PricingCalendar() {
                 disabled={isPast || isBlocked}
               >
                 <span>{day}</span>
-                {dot === "special" && <span className="w-1.5 h-1.5 rounded-full mt-0.5" style={{ background: "#FF5C1A" }} />}
+                {dot === "special" && <span className="w-1.5 h-1.5 rounded-full mt-0.5" style={{ background: "var(--orange)" }} />}
                 {dot === "weekend" && <span className="w-1.5 h-1.5 rounded-full mt-0.5" style={{ background: "#8896A4" }} />}
               </button>
             );
@@ -101,7 +101,7 @@ export default function PricingCalendar() {
             { dot: "#8896A4", label: "Weekend rate" },
             { dot: "#E2E8F0", label: "Unavailable" },
           ].map((l) => (
-            <div key={l.label} className="flex items-center gap-2 text-xs" style={{ color: "#8896A4" }}>
+            <div key={l.label} className="flex items-center gap-2 text-xs" style={{ color: "var(--mid)" }}>
               <span className="w-2.5 h-2.5 rounded-full" style={{ background: l.dot }} />{l.label}
             </div>
           ))}
@@ -113,60 +113,60 @@ export default function PricingCalendar() {
         {!selected ? (
           <div className="rounded-2xl p-8 text-center" style={{ background: "#F5F7FA", border: "2px dashed #E2E8F0" }}>
             <div className="text-5xl mb-4">📅</div>
-            <h3 className="text-lg font-bold mb-2" style={{ color: "#0B1628" }}>Select a Date</h3>
-            <p className="text-sm" style={{ color: "#8896A4" }}>Click any available date on the calendar to see live pricing for all service tiers.</p>
+            <h3 className="text-lg font-bold mb-2" style={{ color: "var(--navy)" }}>Select a Date</h3>
+            <p className="text-sm" style={{ color: "var(--mid)" }}>Click any available date on the calendar to see live pricing for all service tiers.</p>
           </div>
         ) : pricing?.blocked ? (
           <div className="rounded-2xl p-8 text-center" style={{ background: "#FFF1F0", border: "2px solid #FCA5A5" }}>
             <div className="text-5xl mb-4">🚫</div>
             <h3 className="text-lg font-bold mb-2" style={{ color: "#DC2626" }}>Not Available</h3>
             <p className="text-sm" style={{ color: "#DC2626" }}>{pricing.note}</p>
-            <p className="text-xs mt-2" style={{ color: "#8896A4" }}>Please select another date.</p>
+            <p className="text-xs mt-2" style={{ color: "var(--mid)" }}>Please select another date.</p>
           </div>
         ) : pricing ? (
-          <div className="rounded-2xl overflow-hidden shadow-xl" style={{ border: "1px solid #E2E8F0" }}>
+          <div className="rounded-2xl overflow-hidden shadow-xl" style={{ border: "1px solid var(--border)" }}>
             {/* Panel header */}
-            <div className="px-6 py-5" style={{ background: "#0B1628" }}>
-              <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,.55)" }}>Pricing for</p>
+            <div className="px-6 py-5" style={{ background: "var(--navy)" }}>
+              <p className="text-xs font-semibold mb-1" style={{ color: "rgba(242,223,167,.55)" }}>Pricing for</p>
               <h3 className="text-xl font-black text-white">
                 {new Date(selected + "T12:00:00").toLocaleDateString("en-CA", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
               </h3>
               {pricing.note && (
-                <div className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(255,92,26,.25)", color: "#FF8C5A" }}>
+                <div className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(255,92,26,.25)", color: "var(--cream)" }}>
                   ⚡ {pricing.note}
                 </div>
               )}
             </div>
 
             {/* Price rows */}
-            <div className="divide-y" style={{ borderColor: "#E2E8F0" }}>
+            <div className="divide-y" style={{ borderColor: "var(--border)" }}>
               {services.map(([key, info]) => (
-                <div key={key} className="flex items-center justify-between px-6 py-4 hover:bg-orange-50 transition-colors">
+                <div key={key} className="flex items-center justify-between px-6 py-4 hover:bg-amber-50 transition-colors">
                   <div className="flex items-center gap-3">
                     <span className="text-xl">{info.icon}</span>
                     <div>
-                      <div className="text-sm font-bold" style={{ color: "#0B1628" }}>{info.label}</div>
-                      <div className="text-xs" style={{ color: "#8896A4" }}>{info.desc}</div>
+                      <div className="text-sm font-bold" style={{ color: "var(--navy)" }}>{info.label}</div>
+                      <div className="text-xs" style={{ color: "var(--mid)" }}>{info.desc}</div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-xl font-black" style={{ color: "#FF5C1A" }}>{fmtPrice(pricing[key])}<span className="text-sm font-normal" style={{ color: "#8896A4" }}>+</span></div>
-                    <div className="text-xs" style={{ color: "#8896A4" }}>CAD</div>
+                    <div className="text-xl font-black" style={{ color: "var(--orange)" }}>{fmtPrice(pricing[key])}<span className="text-sm font-normal" style={{ color: "var(--mid)" }}>+</span></div>
+                    <div className="text-xs" style={{ color: "var(--mid)" }}>CAD</div>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Book CTA */}
-            <div className="p-5" style={{ background: "#F5F7FA" }}>
+            <div className="p-5" style={{ background: "var(--slate)" }}>
               <Link
                 href={`/contact?date=${selected}`}
                 className="block w-full text-center py-3.5 rounded-xl font-bold text-white text-sm transition-all hover:opacity-90 hover:scale-[1.02] active:scale-95"
-                style={{ background: "#FF5C1A" }}
+                style={{ background: "var(--orange)" }}
               >
                 🚛 Book This Date — Free Estimate
               </Link>
-              <p className="text-center text-xs mt-3" style={{ color: "#8896A4" }}>Firm quote provided on-site. HST extra. No credit card required.</p>
+              <p className="text-center text-xs mt-3" style={{ color: "var(--mid)" }}>Firm quote provided on-site. HST extra. No credit card required.</p>
             </div>
           </div>
         ) : null}

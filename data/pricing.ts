@@ -30,7 +30,6 @@ export const datePrices: Record<string, Partial<ServicePricing>> = {
   "2025-11-28": { starter: 79, half_truck: 239, full_truck: 399, estate: 549, commercial: 699 }, // Black Friday
   "2025-12-26": { starter: 129, half_truck: 379, full_truck: 599 },       // Boxing Day premium
   "2026-01-02": { starter: 119, half_truck: 349, full_truck: 549 },       // Post NY premium
-  "2026-08-18": { starter: 200, half_truck: 349, full_truck: 549 },       // Post NY premium
 };
 
 // ── 3. BLOCKED DATES (no bookings accepted) ───────────────────

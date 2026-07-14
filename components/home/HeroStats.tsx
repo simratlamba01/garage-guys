@@ -17,13 +17,13 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
     const obs = new IntersectionObserver(([e]) => {
       if (e.isIntersecting && !started.current) {
         started.current = true;
-        const dur = 1800, fps = 60, steps = (dur / 1000) * fps;
+        const steps = 60 * 1.8;
         let i = 0;
         const id = setInterval(() => {
           i++;
           setVal(Math.round(target * (i / steps)));
           if (i >= steps) { setVal(target); clearInterval(id); }
-        }, 1000 / fps);
+        }, 1000 / 60);
       }
     }, { threshold: 0.5 });
     if (ref.current) obs.observe(ref.current);
@@ -31,7 +31,7 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
   }, [target]);
 
   return (
-    <div ref={ref} className="text-4xl font-black text-white">
+    <div ref={ref} className="text-4xl font-black" style={{ color: "var(--cream)" }}>
       {val.toLocaleString()}{suffix}
     </div>
   );
@@ -39,13 +39,13 @@ function Counter({ target, suffix }: { target: number; suffix: string }) {
 
 export default function HeroStats() {
   return (
-    <section style={{ background: "#FF5C1A" }} className="py-14">
+    <section className="py-14" style={{ background: "var(--orange)" }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s) => (
             <div key={s.label}>
               <Counter target={s.target} suffix={s.suffix} />
-              <p className="text-xs mt-2 uppercase tracking-wider font-semibold" style={{ color: "rgba(255,255,255,.8)" }}>{s.label}</p>
+              <p className="text-xs mt-2 uppercase tracking-wider font-semibold" style={{ color: "rgba(242,223,167,.75)" }}>{s.label}</p>
             </div>
           ))}
         </div>

@@ -32,56 +32,56 @@ export default function ContactForm() {
     setTimeout(() => { setLoading(false); setSubmitted(true); }, 1200);
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 border focus:border-orange-400 focus:ring-2 focus:ring-orange-100";
-  const inputStyle = { borderColor: "#E2E8F0", fontFamily: "inherit", color: "#1A2535" };
-  const labelStyle = { color: "#0B1628", fontSize: ".82rem", fontWeight: 700, display: "block", marginBottom: ".3rem" };
+  const inputClass = "w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 border focus:border-amber-700 focus:ring-2 focus:ring-amber-50";
+  const inputStyle = { borderColor: "var(--border)", fontFamily: "inherit", color: "var(--text)" };
+  const labelStyle = { color: "var(--navy)", fontSize: ".82rem", fontWeight: 700, display: "block", marginBottom: ".3rem" };
 
   if (submitted) {
     return (
-      <div className="bg-white rounded-2xl p-12 text-center shadow-xl" style={{ border: "1px solid #E2E8F0" }}>
+      <div className="bg-white rounded-2xl p-12 text-center shadow-xl" style={{ border: "1px solid var(--border)" }}>
         <div className="text-6xl mb-5">🎉</div>
-        <h3 className="text-2xl font-black mb-3" style={{ color: "#0B1628" }}>We&apos;ve Got Your Request!</h3>
-        <p className="mb-6" style={{ color: "#4A5568" }}>Our team will call or text you within 1 hour during business hours to confirm your booking details.</p>
+        <h3 className="text-2xl font-black mb-3" style={{ color: "var(--navy)" }}>We&apos;ve Got Your Request!</h3>
+        <p className="mb-6" style={{ color: "var(--text-body)" }}>Our team will call or text you within 1 hour during business hours to confirm your booking details.</p>
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold" style={{ background: "#ECFDF5", color: "#065F46" }}>
           ✅ Confirmation email sent to {form.email}
         </div>
         <div className="mt-8">
-          <Link href="/" className="text-sm font-semibold" style={{ color: "#FF5C1A" }}>← Back to Home</Link>
+          <Link href="/" className="text-sm font-semibold" style={{ color: "var(--orange)" }}>← Back to Home</Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl overflow-hidden" style={{ border: "1px solid #E2E8F0" }}>
-      <div className="px-8 py-6" style={{ background: "#0B1628" }}>
+    <div className="bg-white rounded-2xl shadow-xl overflow-hidden" style={{ border: "1px solid var(--border)" }}>
+      <div className="px-8 py-6" style={{ background: "var(--navy)" }}>
         <h2 className="text-xl font-black text-white">Request a Free On-Site Quote</h2>
-        <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,.55)" }}>We respond within 1 hour during business hours.</p>
+        <p className="text-sm mt-1" style={{ color: "rgba(242,223,167,.55)" }}>We respond within 1 hour during business hours.</p>
       </div>
       <form onSubmit={handleSubmit} className="px-8 py-7 space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label style={labelStyle}>First Name <span style={{ color: "#FF5C1A" }}>*</span></label>
+            <label style={labelStyle}>First Name <span style={{ color: "var(--orange)" }}>*</span></label>
             <input className={inputClass} style={inputStyle} type="text" placeholder="Marcus" required value={form.firstName} onChange={set("firstName")} autoComplete="given-name" />
           </div>
           <div>
-            <label style={labelStyle}>Last Name <span style={{ color: "#FF5C1A" }}>*</span></label>
+            <label style={labelStyle}>Last Name <span style={{ color: "var(--orange)" }}>*</span></label>
             <input className={inputClass} style={inputStyle} type="text" placeholder="Chen" required value={form.lastName} onChange={set("lastName")} autoComplete="family-name" />
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label style={labelStyle}>Email <span style={{ color: "#FF5C1A" }}>*</span></label>
+            <label style={labelStyle}>Email <span style={{ color: "var(--orange)" }}>*</span></label>
             <input className={inputClass} style={inputStyle} type="email" placeholder="marcus@email.com" required value={form.email} onChange={set("email")} autoComplete="email" />
           </div>
           <div>
-            <label style={labelStyle}>Phone <span style={{ color: "#FF5C1A" }}>*</span></label>
+            <label style={labelStyle}>Phone <span style={{ color: "var(--orange)" }}>*</span></label>
             <input className={inputClass} style={inputStyle} type="tel" placeholder="647-555-0192" required value={form.phone} onChange={set("phone")} autoComplete="tel" />
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label style={labelStyle}>Postal Code <span style={{ color: "#FF5C1A" }}>*</span></label>
+            <label style={labelStyle}>Postal Code <span style={{ color: "var(--orange)" }}>*</span></label>
             <input className={inputClass} style={inputStyle} type="text" placeholder="L5B 2C9" required value={form.postalCode} onChange={set("postalCode")} autoComplete="postal-code" />
           </div>
           <div>
@@ -124,11 +124,11 @@ export default function ContactForm() {
           type="submit"
           disabled={loading}
           className="w-full py-4 rounded-xl font-bold text-white text-base transition-all duration-200 hover:opacity-90 hover:scale-[1.01] active:scale-95 disabled:opacity-70"
-          style={{ background: "#FF5C1A" }}
+          style={{ background: "var(--orange)" }}
         >
           {loading ? "Sending…" : "🚛 Request My Free Estimate"}
         </button>
-        <p className="text-center text-xs" style={{ color: "#8896A4" }}>📋 No credit card required. Confirmed within 1 hour during business hours.</p>
+        <p className="text-center text-xs" style={{ color: "var(--mid)" }}>📋 No credit card required. Confirmed within 1 hour during business hours.</p>
       </form>
     </div>
   );

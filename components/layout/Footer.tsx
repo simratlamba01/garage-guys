@@ -61,7 +61,7 @@ export default function Footer() {
         <div className="footer-grid">
 
           {/* Brand */}
-          <div className="">
+          <div className="lg:col-span-2">
             <Link href="/" className="footer-logo-link">
               <span className="footer-logo-icon">🚛</span>
               <span className="footer-logo-text">JunkAway<span className="text-orange">Pro</span></span>

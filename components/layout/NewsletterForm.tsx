@@ -57,14 +57,14 @@ export default function NewsletterForm() {
                   color: "white",
                   fontFamily: "inherit",
                 }}
-                onFocus={(e) => (e.target.style.borderColor = "#FF5C1A")}
+                onFocus={(e) => (e.target.style.borderColor = "var(--orange)")}
                 onBlur={(e)  => (e.target.style.borderColor = status === "error" ? "#EF4444" : "rgba(255,255,255,.15)")}
               />
               <button
                 type="submit"
                 disabled={status === "loading"}
                 className="px-4 py-3 rounded-xl font-bold text-white text-sm flex-shrink-0 transition-all duration-200 hover:opacity-90 hover:scale-105 active:scale-95 disabled:opacity-60"
-                style={{ background: "#FF5C1A", fontFamily: "inherit" }}
+                style={{ background: "var(--orange)", fontFamily: "inherit" }}
                 aria-label="Subscribe to newsletter"
               >
                 {status === "loading" ? (
